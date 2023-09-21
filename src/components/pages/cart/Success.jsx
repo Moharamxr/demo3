@@ -2,10 +2,12 @@ import React, { useContext, useEffect ,useState} from "react";
 import { checkout } from "../../../services/cart.service";
 import { gState } from "../../../context/Context";
 import { getAddresses } from "../../../services/address.service";
+import { useNavigate } from "react-router-dom";
 const Success = () => {
   const { data } = useContext(gState);
   const { defaultAddressId } = data;
   const { sessionId } = data;
+  const navigate = useNavigate();
   console.log(sessionId);
   const [addresses, setAddresses] = useState([]);
 

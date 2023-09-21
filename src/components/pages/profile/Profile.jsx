@@ -9,10 +9,10 @@ import {
 const Profile = () => {
   const navigate = useNavigate();
   const handleSignout = async () => {
-    sessionStorage.setItem("isLoggedIn", "false");
+    localStorage.setItem("isLoggedIn", "false");
     await navigate("/login");
   };
-  const isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true";
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const [addresses, setAddress] = useState([]);
   const getData = async () => {
     try {

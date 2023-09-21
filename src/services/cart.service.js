@@ -2,9 +2,9 @@ import axios from "axios";
 
 export const getCart = async () => {
   console.log("get products running");
-  sessionStorage.setItem("loading", "true");
+  localStorage.setItem("loading", "true");
   try {
-    let authToken = sessionStorage.getItem("authToken");
+    let authToken = localStorage.getItem("authToken");
     const axiosResponse = await axios.get(
       "https://chicwardrobe-znz5.onrender.com/cart",
       {
@@ -15,7 +15,7 @@ export const getCart = async () => {
       }
     );
     const products = axiosResponse.data;
-    sessionStorage.setItem("loading", "false");
+    localStorage.setItem("loading", "false");
     console.log("Get Products Finished");
     console.log(products);
     return products;
@@ -28,7 +28,7 @@ export const deleteCartItem = async (id, size) => {
   console.log("Deleting item:", id);
 
   try {
-    const authToken = sessionStorage.getItem("authToken");
+    const authToken = localStorage.getItem("authToken");
     console.log(authToken);
     console.log(id);
     console.log(size);
@@ -58,7 +58,7 @@ export const addProductToCart = async (id, size, quantity) => {
   console.log("Adding item:", id);
 
   try {
-    const authToken = sessionStorage.getItem("authToken");
+    const authToken = localStorage.getItem("authToken");
     console.log(authToken);
     console.log(id);
     console.log(size);
@@ -90,7 +90,7 @@ export const updateCartProduct = async (id, size, quantity) => {
   console.log("Updating item:", id);
 
   try {
-    const authToken = sessionStorage.getItem("authToken");
+    const authToken = localStorage.getItem("authToken");
     console.log(authToken);
     console.log(id);
     console.log(size);
@@ -121,7 +121,7 @@ export const updateCartProduct = async (id, size, quantity) => {
 
 export const goToPayment =async () => {
   try {
-    const authToken = sessionStorage.getItem("authToken");
+    const authToken = localStorage.getItem("authToken");
     console.log("goToPayment...");
     const response =await axios.get(
       `https://chicwardrobe-znz5.onrender.com/orders/checkout`,
@@ -145,7 +145,8 @@ export const goToPayment =async () => {
 
 export const checkout =async (id) => {
   try {
-    const authToken = sessionStorage.getItem("authToken");
+    console.log(id)
+    const authToken = localStorage.getItem("authToken");
     console.log("Checking out...");
     const response =await axios.post(
       `https://chicwardrobe-znz5.onrender.com/orders`,id,
@@ -153,7 +154,7 @@ export const checkout =async (id) => {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${authToken}`,
-          
+          'Access-Control-Allow-Origin': 'https://the-basic-look-demo2.onrender.com',
         },
       }
       

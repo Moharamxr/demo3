@@ -12,14 +12,14 @@ export const contact = async (contactData) => {
         },
       }
     );
-    sessionStorage.setItem("ContactErrorMessage", "");
-    sessionStorage.setItem("SuccessMessage","Message Sent Successfully");
+    localStorage.setItem("ContactErrorMessage", "");
+    localStorage.setItem("SuccessMessage","Message Sent Successfully");
     console.log(response.data)
     return response.data;
   } catch (error) {
     
     console.log(error.response.data.error);
-    sessionStorage.setItem('ContactErrorMessage', error.response.data.error);
+    localStorage.setItem('ContactErrorMessage', error.response.data.error);
     throw error;
   }
 

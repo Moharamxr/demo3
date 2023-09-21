@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { checkout } from "../../../services/cart.service";
 import { gState } from "../../../context/Context";
-
 
 const Success = () => {
   const { data } = useContext(gState);
@@ -9,21 +8,27 @@ const Success = () => {
   const { sessionId } = data;
   console.log(sessionId);
 
-  const handleCheckout = async (e) => {
-    e.preventDefault();
-
+  const getData = async () => {
     try {
-    
       console.log(sessionId);
-      await checkout(defaultAddressId);
+      await checkout(sessionId);
     } catch (error) {
       console.error(error);
       throw error;
     }
   };
+  useEffect(() => {
+    getData();
+  }, []);
+  
+  if(defaultAddressId === ''){
+    if (addresses.length<1) {
+      navigate('/address');
+    }
+  }
   return (
-    <div className="text-center fw-bold vh-100" onClick={(e)=>handleCheckout(e)}>
-      <p>Place Your Order</p>
+    <div className="text-center fw-bold vh-100">
+      <p>Your Order Placed Successfully</p>
     </div>
   );
 };

@@ -11,7 +11,7 @@ const Navbar = () => {
 
   const navigate = useNavigate();
   const { setData } = useContext(gState);
-  const isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true";
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
   const setProductCollection = async (coll) => {
     await setData((prevState) => {

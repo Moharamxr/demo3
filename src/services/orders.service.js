@@ -2,9 +2,9 @@ import axios from "axios";
 
 export const getAllOrders = async () => {
   try {
-    let authToken = sessionStorage.getItem("authToken");
+    let authToken = localStorage.getItem("authToken");
     console.log("get allOrders running");
-    sessionStorage.setItem("loading", "true");
+    localStorage.setItem("loading", "true");
     const axiosResponse = await axios.get(
       "https://chicwardrobe-znz5.onrender.com/orders/all",
       {
@@ -15,7 +15,7 @@ export const getAllOrders = async () => {
       }
     );
     const orders = axiosResponse.data;
-    sessionStorage.setItem("loading", "false");
+    localStorage.setItem("loading", "false");
     console.log("Get all orders Finished");
     console.log(orders);
     return orders;
@@ -27,9 +27,9 @@ export const getAllOrders = async () => {
 
 export const getCustomerOrders = async () => {
   try {
-    let authToken = sessionStorage.getItem("authToken");
+    let authToken = localStorage.getItem("authToken");
     console.log("get orders running");
-    sessionStorage.setItem("loading", "true");
+    localStorage.setItem("loading", "true");
     const axiosResponse = await axios.get(
       "https://chicwardrobe-znz5.onrender.com/orders",
       {
@@ -40,7 +40,7 @@ export const getCustomerOrders = async () => {
       }
     );
     const orders = axiosResponse.data;
-    sessionStorage.setItem("loading", "false");
+    localStorage.setItem("loading", "false");
     console.log("Get orders Finished");
     console.log(orders);
     return orders;

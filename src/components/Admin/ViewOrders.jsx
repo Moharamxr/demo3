@@ -26,10 +26,10 @@ const ViewOrders = () => {
             </>
           ) : (
             orders.map((order) => (
-              <div key={order.id}>
-                <p>{order.name}</p>
-                <p>Quantity: {order.quantity}</p>
-                <p>Price: ${order.price.toFixed(2)}</p>
+              <div key={order._id}>
+                <p></p>
+                <p>ID: {order._id}</p>
+                <p>Price: ${order.totalAmount}</p>
               </div>
             ))
           )}

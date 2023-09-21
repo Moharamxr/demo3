@@ -13,7 +13,7 @@ const ProductList = () => {
 
   const getData = async () => {
     try {
-      sessionStorage.setItem("loading", "true");
+      
 
       let data;
       if (collection === "all") {

@@ -2,9 +2,9 @@ import axios from "axios";
 
 export const getAddresses = async () => {
   try {
-    let authToken = sessionStorage.getItem("authToken");
+    let authToken = localStorage.getItem("authToken");
     console.log("get addresses running");
-    sessionStorage.setItem("loading", "true");
+    localStorage.setItem("loading", "true");
     const axiosResponse = await axios.get(
       "https://chicwardrobe-znz5.onrender.com/address",
       {
@@ -15,7 +15,7 @@ export const getAddresses = async () => {
       }
     );
     const addresses = axiosResponse.data;
-    sessionStorage.setItem("loading", "false");
+    localStorage.setItem("loading", "false");
     console.log("Get addresses Finished");
     console.log("addresses",addresses);
     return addresses;
@@ -28,7 +28,7 @@ export const getAddresses = async () => {
 export const getAddressById = async (id) => {
   try {
     console.log("get address by id running");
-    let authToken = sessionStorage.getItem("authToken");
+    let authToken = localStorage.getItem("authToken");
     const response = await axios.get(
       `https://chicwardrobe-znz5.onrender.com/address/${id}`,
       {
@@ -51,7 +51,7 @@ export const getAddressById = async (id) => {
 
 export const addNewAddress = async (updatedAddress) => {
   try {
-    const authToken = sessionStorage.getItem("authToken");
+    const authToken = localStorage.getItem("authToken");
     const formData = new FormData();
     formData.append("addressLine", updatedAddress.addressLine);
     formData.append("country", updatedAddress.country);
@@ -72,12 +72,12 @@ export const addNewAddress = async (updatedAddress) => {
     );
 
     console.log("Address Added successfully");
-    sessionStorage.setItem('AddFormError', '');
+    localStorage.setItem('AddFormError', '');
     console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("Error Adding Address:", error);
-    sessionStorage.setItem('AddFormError', error.response.data.error);
+    localStorage.setItem('AddFormError', error.response.data.error);
     throw error;
   }
 };
@@ -85,7 +85,7 @@ export const addNewAddress = async (updatedAddress) => {
 export const updateAddress = async (id,updatedAddress) => {
   try {
     console.log("Updating Address:", id);
-    const authToken = sessionStorage.getItem("authToken");
+    const authToken = localStorage.getItem("authToken");
     console.log(updatedAddress);
 
     const formData = new FormData();
@@ -108,12 +108,12 @@ export const updateAddress = async (id,updatedAddress) => {
     );
 
     console.log("Address Updated successfully");
-    sessionStorage.setItem('EditFormError', '');
+    localStorage.setItem('EditFormError', '');
     console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("Error Updated Address:", error);
-    sessionStorage.setItem('EditFormError', error.response.data.error);
+    localStorage.setItem('EditFormError', error.response.data.error);
     throw error;
   }
 };
@@ -123,7 +123,7 @@ export const deleteAddress = async (id) => {
   console.log("Deleting Address:", id);
 
   try {
-    const authToken = sessionStorage.getItem("authToken");
+    const authToken = localStorage.getItem("authToken");
    
     console.log(id);
 

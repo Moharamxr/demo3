@@ -5,7 +5,7 @@ import { goToPayment } from "../../../services/cart.service";
 import { gState } from "../../../context/Context";
 const Cart = () => {
   const navigate = useNavigate();
-  const isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true";
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const { setData } = useContext(gState);
 
   const handleGotoPayment = async (e) => {
@@ -29,12 +29,13 @@ const Cart = () => {
       {isLoggedIn ? (
         <>
           <CartItems />
-          <button
+          <div className="d-flex justify-content-center"><button
             className="btn btn-dark"
             onClick={(e) => handleGotoPayment(e)}
           >
             Go to payment
-          </button>
+          </button></div>
+          
         </>
       ) : (
         <>

@@ -32,7 +32,7 @@ const navigate = useNavigate();
       });
     }
   });
-  if(defaultAddressId===''){
+  if(defaultAddressId === ''){
     if (addresses.length<1) {
       navigate('/address');
     }else{

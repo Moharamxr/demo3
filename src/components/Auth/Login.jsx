@@ -6,11 +6,11 @@ import { login } from "../../services/auth.service";
 import NotFound from "../pages/NotFound";
 const Login = () => {
   const navigate = useNavigate();
-  const formErrors = sessionStorage.getItem("LoginErrorMessage");
+  const formErrors = localStorage.getItem("LoginErrorMessage");
   const [showError, setShowError] = useState(false);
-  const isAdmin = sessionStorage.getItem("role") === "admin"; 
+  const isAdmin = localStorage.getItem("role") === "admin"; 
   const handleRefresh = () => {
-    sessionStorage.setItem("LoginErrorMessage", "");
+    localStorage.setItem("LoginErrorMessage", "");
     console.log("Page is being refreshed");
   };
   useEffect(() => {
@@ -45,13 +45,13 @@ const Login = () => {
     }),
     onSubmit: async (formValues) => {
       const data = await login(formValues);
-      sessionStorage.setItem("LoginErrorMessage", "");
-      sessionStorage.setItem("RegisterErrorMessage", "");
+      localStorage.setItem("LoginErrorMessage", "");
+      localStorage.setItem("RegisterErrorMessage", "");
       isAdmin ? navigate("/admin"):navigate("/")
       
     },
   });
-  const isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true";
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   
 
   return (

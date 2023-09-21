@@ -3,7 +3,7 @@ import axios from "axios";
 export const getProducts = async () => {
   try {
     console.log("get products running");
-    sessionStorage.setItem("loading", "true");
+    localStorage.setItem("loading", "true");
     const axiosResponse = await axios.get(
       "https://chicwardrobe-znz5.onrender.com/products",
       {
@@ -15,7 +15,7 @@ export const getProducts = async () => {
     const products = axiosResponse.data;
     const status = axiosResponse.status;
     if (status === 200) {
-      sessionStorage.setItem("loading", "false");
+      localStorage.setItem("loading", "false");
       console.log("Get Products Finished");
     }
 
@@ -30,7 +30,7 @@ export const getProducts = async () => {
 
 export const getProductById = async (id) => {
   try {
-    sessionStorage.setItem("loading", "true");
+    localStorage.setItem("loading", "true");
     const response = await axios.get(
       `https://chicwardrobe-znz5.onrender.com/products/${id}`,
       {
@@ -42,7 +42,7 @@ export const getProductById = async (id) => {
 
     const product = response.data.product;
     console.log(product.description);
-    sessionStorage.setItem("loading", "false");
+    localStorage.setItem("loading", "false");
     return product;
   } catch (error) {
     console.error(error);
@@ -52,7 +52,7 @@ export const getProductById = async (id) => {
 export const getProductsByCollection = async (collection) => {
   try {
     console.log("get productsByCollection running");
-    sessionStorage.setItem("loading", "true");
+    localStorage.setItem("loading", "true");
     const response = await axios.get(
       `https://chicwardrobe-znz5.onrender.com/products/collections/${collection}`,
       {
@@ -63,7 +63,7 @@ export const getProductsByCollection = async (collection) => {
     );
 
     const product = response.data;
-    sessionStorage.setItem("loading", "false");
+    localStorage.setItem("loading", "false");
     console.log("Get productsByCollection Finished");
     return product;
   } catch (error) {
@@ -76,7 +76,7 @@ export const deleteProductById = async (id) => {
   console.log("Deleting item:", id);
 
   try {
-    const authToken = sessionStorage.getItem("authToken");
+    const authToken = localStorage.getItem("authToken");
     console.log(authToken);
     console.log(id);
     const response = await axios.delete(
@@ -99,7 +99,7 @@ export const deleteProductById = async (id) => {
 export const addNewProduct = async (newItemData) => {
   try {
     console.log("Adding item:");
-    const authToken = sessionStorage.getItem("authToken");
+    const authToken = localStorage.getItem("authToken");
     console.log(authToken);
     console.log(newItemData);
 
@@ -135,7 +135,7 @@ export const addNewProduct = async (newItemData) => {
 export const updateProduct = async (id,updateData) => {
   try {
     console.log("Updating item:", id);
-    const authToken = sessionStorage.getItem("authToken");
+    const authToken = localStorage.getItem("authToken");
     console.log(authToken);
     console.log(updateData);
 
@@ -172,7 +172,7 @@ export const updateProduct = async (id,updateData) => {
 //   console.log("Updating item:", id);
 
 //   try {
-//     const authToken = sessionStorage.getItem("authToken");
+//     const authToken = localStorage.getItem("authToken");
 //     console.log(authToken);
 //     console.log(id);
 //     console.log(updateData);

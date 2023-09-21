@@ -1,12 +1,25 @@
 import React, { useContext, useEffect } from "react";
 import { checkout } from "../../../services/cart.service";
 import { gState } from "../../../context/Context";
-
+import { getAddresses } from "../../../services/address.service";
 const Success = () => {
   const { data } = useContext(gState);
   const { defaultAddressId } = data;
   const { sessionId } = data;
   console.log(sessionId);
+  const [addresses, setAddresses] = useState([]);
+
+  const getAddressesData = async () => {
+    try {
+      const data = await getAddresses();
+      setAddresses(data.addresses);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    getAddressesData();
+  }, []);
 
   const getData = async () => {
     try {
@@ -20,7 +33,7 @@ const Success = () => {
   useEffect(() => {
     getData();
   }, []);
-  
+
   if(defaultAddressId === ''){
     if (addresses.length<1) {
       navigate('/address');

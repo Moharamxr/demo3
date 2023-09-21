@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Success = () => {
   const { data } = useContext(gState);
   const { defaultAddressId } = data;
-  const { sessionId } = data;
+  const  sessionId  = localStorage.getItem("sessionId");
   const navigate = useNavigate();
   console.log(sessionId);
   const [addresses, setAddresses] = useState([]);

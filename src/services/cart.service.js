@@ -135,7 +135,8 @@ export const goToPayment =async () => {
       
     );
     console.log("goToPayment successfully")
-    console.log(response.data);
+    localStorage.setItem("sessionId",response.data.sessionId)
+    console.log(response.data.sessionId);
     return response.data;
   } catch (error) {
     console.error(error);

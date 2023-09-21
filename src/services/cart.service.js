@@ -144,13 +144,13 @@ export const goToPayment =async () => {
   }
 };
 
-export const checkout =async (id) => {
+export const checkout =async (sessionId) => {
   try {
-    console.log(id)
+    console.log(sessionId)
     const authToken = localStorage.getItem("authToken");
     console.log("Checking out...");
     const response =await axios.post(
-      `https://chicwardrobe-znz5.onrender.com/orders`,id,
+      `https://chicwardrobe-znz5.onrender.com/orders`,sessionId,
       {
         headers: {
           "Content-Type": "application/json",

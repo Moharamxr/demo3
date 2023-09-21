@@ -22,7 +22,7 @@ const Success = () => {
     }
   };
   return (
-    <div className="text-center fw-bold" onClick={(e)=>handleCheckout(e)}>
+    <div className="text-center fw-bold vh-100" onClick={(e)=>handleCheckout(e)}>
       <p>Place Your Order</p>
     </div>
   );

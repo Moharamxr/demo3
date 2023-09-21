@@ -156,6 +156,9 @@ export const checkout =async (sessionId) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${authToken}`,
           'Access-Control-Allow-Origin': 'https://the-basic-look-demo2.onrender.com',
+          'Accept-Encoding':'gzip, deflate,br,',
+          'Connection':'keep-alive',
+          "Accept":' application/json',
         },
       }
       

@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
 
-const Message = () => {
+const Message = (props) => {
+  const { message } = props;
   return (
     <section>
-      <p>{message}</p>
+      <p className="text-danger text-center fw-bold vh-100">{message}</p>
     </section>
-  )
-}
+  );
+};
 
-export default Message
+export default Message;

@@ -39,7 +39,7 @@ function App() {
       setMessage("Order placed! You will receive an email confirmation.");
     }
 
-    if (query.get("canceled")) {
+    if (query.get("error")) {
       setMessage(
         "Order canceled -- continue to shop around and checkout when you're ready."
       );
@@ -51,16 +51,11 @@ function App() {
     <Layout>
       <Routes>
         <Route path="/checkout">
-          <Route
-            index
-            element={
-              message ? <Message message={message} /> : <ProductDisplay />
-            }
-          />
+          <Route index element={<ProductDisplay />} />
         </Route>
 
         <Route path="/orders/success" element={<Success />} />
-        <Route path="/orders/cancel" element={<Cancel />} />
+        <Route path="/orders/cancel" element={<Message message={message} />} />
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
 

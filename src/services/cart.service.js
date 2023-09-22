@@ -144,30 +144,28 @@ export const goToPayment =async () => {
   }
 };
 
-export const checkout =async (sessionId) => {
+export const checkout = async (sessionId) => {
   try {
-    console.log(sessionId)
+    console.log(sessionId);
     const authToken = localStorage.getItem("authToken");
     console.log("Checking out...");
-    const response =await axios.post(
-      `https://chicwardrobe-znz5.onrender.com/orders`,sessionId,
+
+    const response = await axios.post(
+      `https://chicwardrobe-znz5.onrender.com/orders`,
+      { sessionId },
       {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${authToken}`,
-          'Access-Control-Allow-Origin': 'https://the-basic-look-demo2.onrender.com',
-          'Accept-Encoding':'gzip, deflate,br,',
-          'Connection':'keep-alive',
-          "Accept":' application/json',
         },
       }
-      
     );
-    console.log("payment placed successfully")
+
+    console.log("Payment placed successfully");
     console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error);
-    throw error;
+    // throw error;
   }
 };

@@ -23,18 +23,18 @@ const Success = () => {
     getAddressesData();
   }, []);
 
-  const getData = async () => {
-    try {
-      console.log(sessionId);
-      await checkout(sessionId);
-    } catch (error) {
-      console.error(error);
-      throw error;
-    }
-  };
-  useEffect(() => {
-    getData();
-  }, []);
+  // const getData = async () => {
+  //   try {
+  //     console.log(sessionId);
+  //     await checkout(sessionId);
+  //   } catch (error) {
+  //     console.error(error);
+  //     throw error;
+  //   }
+  // };
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
   if(defaultAddressId === ''){
     if (addresses.length<1) {
@@ -42,8 +42,9 @@ const Success = () => {
     }
   }
   return (
-    <div className="text-center fw-bold vh-100">
+    <div className="text-center text-success  fw-bold vh-100">
       <p>Your Order Placed Successfully</p>
+      <button className="btn btn-dark " onClick={()=>navigate('/')}>Go To Home</button>
     </div>
   );
 };

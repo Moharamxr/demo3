@@ -7,7 +7,7 @@ import NotFound from "../pages/NotFound";
 
 const Register = () => {
   const navigate = useNavigate();
-  const formErrors = sessionStorage.getItem("RegisterErrorMessage");
+  const formErrors = localStorage.getItem("RegisterErrorMessage");
   const [showError, setShowError] = useState(false);
 
   useEffect(() => {
@@ -23,11 +23,11 @@ const Register = () => {
   }, [formErrors]);
   
   if (window.location.pathname !== "/register") {
-    sessionStorage.setItem("RegisterErrorMessage","");
+    localStorage.setItem("RegisterErrorMessage","");
   }
 
   const handleRefresh = () => {
-    sessionStorage.setItem("RegisterErrorMessage", "");
+    localStorage.setItem("RegisterErrorMessage", "");
     console.log("Page is being refreshed");
   };
 
@@ -56,15 +56,15 @@ const Register = () => {
     onSubmit: async (formValues) => {
       try {
         const data = await register(formValues);
-        sessionStorage.setItem("RegisterErrorMessage", "");
-        sessionStorage.setItem("LoginErrorMessage", "");
+        localStorage.setItem("RegisterErrorMessage", "");
+        localStorage.setItem("LoginErrorMessage", "");
         navigate("/login");
       } catch (error) {
         console.error(error);
       }
     },
   });
-  const isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true";
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   return (
     <>
       {!isLoggedIn ? (

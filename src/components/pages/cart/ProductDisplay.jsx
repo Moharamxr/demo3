@@ -36,7 +36,7 @@ const ProductDisplay = () => {
             handleCheckout(e);
           }}
         >
-          Check out
+          Checkout
         </button>
       </form>
     </section>

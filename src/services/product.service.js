@@ -23,7 +23,7 @@ export const getProducts = async () => {
     return products;
   } catch (error) {
     console.error(error);
-    
+
     throw error;
   }
 };
@@ -132,7 +132,7 @@ export const addNewProduct = async (newItemData) => {
   }
 };
 
-export const updateProduct = async (id,updateData) => {
+export const updateProduct = async (id, updateData) => {
   try {
     console.log("Updating item:", id);
     const authToken = localStorage.getItem("authToken");
@@ -168,40 +168,26 @@ export const updateProduct = async (id,updateData) => {
   }
 };
 
-// export const updateProduct = async (id, updateData) => {
-//   console.log("Updating item:", id);
+export const searchByName = async (keyword) => {
+  try {
+    const authToken = localStorage.getItem("authToken");
 
-//   try {
-//     const authToken = localStorage.getItem("authToken");
-//     console.log(authToken);
-//     console.log(id);
-//     console.log(updateData);
+    const response = await axios.get(
+      `https://chicwardrobe-znz5.onrender.com/products/search?$keyword=${keyword}`,
+      
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${authToken}`,
+        },
+      }
+    );
 
-//     const formData = new FormData();
-//     formData.append("name", updateData.name);
-//     formData.append("price", updateData.price);
-//     formData.append("size", updateData.size);
-//     formData.append("description", updateData.description);
-//     formData.append("gender", updateData.gender);
-//     formData.append("collectionSeason", updateData.collectionSeason);
-//     formData.append("image", updateData.image);
-
-//     const response = await axios.put(
-//       `https://chicwardrobe-znz5.onrender.com/products/${id}`,
-//       formData,
-//       {
-//         headers: {
-//           "Content-Type": "application/json",
-//           Authorization: `Bearer ${authToken}`,
-//         },
-//       }
-//     );
-
-//     console.log("Item Updated successfully");
-//     console.log(response.data);
-//     return response.data;
-//   } catch (error) {
-//     console.error("Error Updating item:", error);
-//     throw error;
-//   }
-// };
+   
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error Updated item:", error);
+    throw error;
+  }
+};

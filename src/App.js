@@ -27,6 +27,7 @@ import ProductDisplay from "./components/pages/cart/ProductDisplay";
 import Message from "./components/pages/cart/Message";
 import Success from "./components/pages/cart/Success";
 import Cancel from "./components/pages/cart/Cancel";
+import Search from "./components/Products/Search";
 function App() {
   const isAdmin = sessionStorage.getItem("role") === "admin";
 
@@ -54,6 +55,7 @@ function App() {
           <Route index element={<ProductDisplay />} />
         </Route>
 
+        <Route path="/search" element={<Search />} />
         <Route path="/orders/success" element={<Success />} />
         <Route path="/orders/cancel" element={<Message message={message} />} />
         <Route path="/" element={<Home />} />

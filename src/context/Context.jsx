@@ -25,7 +25,8 @@ const Context = ({ children }) => {
       phone: "",
     },
     sessionId: "",
-    
+    searchKeyword: "",
+    totalPrice: null,
   });
 
   return (

@@ -54,7 +54,7 @@ const Profile = () => {
                 ))}
 
                 <NavLink className="link-dark" to={"/address"}>
-                  Veiw address
+                  View address
                 </NavLink>
                 <br />
                 <button

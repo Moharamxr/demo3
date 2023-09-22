@@ -32,6 +32,19 @@ const Navbar = () => {
     setSearchBarVisible(false);
   };
 
+  const handleSearchButton = (e) => {
+      e.preventDefault();
+      navigate('/search');
+  };
+  const handleSearchInput = async(e) => {
+    await setData((prevState) => {
+      return {
+        ...prevState,
+        searchKeyword: e.target.value,
+
+      };
+    });
+  };
   const logoMargin = isLoggedIn ? 8 : 10;
 
   return (
@@ -77,11 +90,13 @@ const Navbar = () => {
                 type="text"
                 name="search-bar"
                 placeholder="What're you looking for..."
+                onChange={(e)=>handleSearchInput(e)}
                 required
               />
               <button
                 className="btn btn-dark p-1 btn-sm border-dark border-0 ms-1"
                 style={{ width: "25%", height: "40px" }}
+                onClick={(e)=>handleSearchButton(e)}
               >
                 Search
               </button>

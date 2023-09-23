@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Item from "./NewItem";
 import { useNavigate } from "react-router-dom";
 import { getProducts, deleteProductById } from "../../services/product.service";
+
 const Admin = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);

@@ -29,7 +29,7 @@ import Success from "./components/pages/cart/Success";
 import Cancel from "./components/pages/cart/Cancel";
 import Search from "./components/Products/Search";
 function App() {
-  const isAdmin = sessionStorage.getItem("role") === "admin";
+  const isAdmin = localStorage.getItem("role") === "admin";
 
   const [message, setMessage] = useState("");
   useEffect(() => {

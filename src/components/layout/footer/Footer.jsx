@@ -73,7 +73,7 @@ const Footer = () => {
             <div>
               <p>
                 <NavLink
-                  to={"/login"}
+                  to={"/"}
                   className="text-white"
                   style={{ textDecoration: "none" }}
                 >

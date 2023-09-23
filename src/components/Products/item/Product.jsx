@@ -33,7 +33,7 @@ const Product = ({ product }) => {
                {product.description}
             </a>
           </div>
-          <div className="card-text">LE {product.price} EGP</div>
+          <div className="card-text">{product.price} EGP</div>
           <button className="btn btn-dark btn-sm mt-1" style={{width:"100%"}} onClick={()=>handleAddToCart()}>Add To Cart</button>
         </div>
       </div>

@@ -30,7 +30,7 @@ import Cancel from "./components/pages/cart/Cancel";
 import Search from "./components/Products/Search";
 function App() {
   const isAdmin = localStorage.getItem("role") === "admin";
-
+  
   const [message, setMessage] = useState("");
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout

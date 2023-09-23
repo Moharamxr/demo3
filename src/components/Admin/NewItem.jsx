@@ -44,7 +44,7 @@ const NewProduct = ({ product, handleDelete }) => {
               {product.description}
             </a>
           </div>
-          <div className="card-text">LE {product.price} EGP</div>
+          <div className="card-text"> {product.price} EGP</div>
 
           <div className="d-flex justify-content-center">
             <button

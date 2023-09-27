@@ -101,12 +101,12 @@ const Home = () => {
         </div>
         <br />
         <br />
-        <div className="row">
+        {/* <div className="row">
           <div className="col">
             <h4 className="p-2 text-center">All Products</h4>
           </div>
-        </div>
-        <div className="row d-flex justify-content-center align-items-center">
+        </div> */}
+        {/* <div className="row d-flex justify-content-center align-items-center">
           <div className="col-lg-3 col-md-4 col-sm-6 col-9 g-3">
             <div className="card g-3 h-100">
               <img
@@ -239,8 +239,8 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="row">
+        </div> */}
+        {/* <div className="row">
           <div className="col d-flex justify-content-center align-items-center m-2">
             <button
               className="create-butt"
@@ -250,7 +250,7 @@ const Home = () => {
               VIEW ALL
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="bg-dark ">

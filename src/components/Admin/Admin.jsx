@@ -6,7 +6,11 @@ import { getProducts, deleteProductById } from "../../services/product.service";
 const Admin = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
-  const isLoading = sessionStorage.getItem("loading") === "true";
+  const isLoading = localStorage.getItem("loading") === "true";
+  const isAdmin = localStorage.getItem("admin") === "true";
+  if(!isAdmin){
+    navigate('/');
+  }
   const getData = async () => {
     try {
       const data = await getProducts();
@@ -20,6 +24,7 @@ const Admin = () => {
 
   useEffect(() => {
     getData();
+    
   }, []);
 
   const handleDelete = async (id) => {

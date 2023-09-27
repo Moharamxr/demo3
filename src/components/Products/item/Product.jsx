@@ -38,7 +38,7 @@ const Product = ({ product }) => {
             </a>
           </div>
           <div className="card-text">{product.price} EGP</div>
-          {(isLoggedIn||isAdmin) && (
+          {(isLoggedIn&&!isAdmin) && (
             <button
               className="btn btn-dark btn-sm mt-1"
               style={{ width: "100%" }}

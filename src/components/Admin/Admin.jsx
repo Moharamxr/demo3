@@ -7,7 +7,7 @@ const Admin = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const isLoading = localStorage.getItem("loading") === "true";
-  const isAdmin = localStorage.getItem("admin") === "true";
+  const isAdmin = localStorage.getItem("role") === "true";
   if(!isAdmin){
     navigate('/');
   }

@@ -6,6 +6,8 @@ const Product = ({ product }) => {
   const absPath = "https://chicwardrobe-znz5.onrender.com/";
   const [quantity, setQuantity] = useState(1);
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  const isAdmin = localStorage.getItem("role") === "admin";
+
   const handleAddToCart = async () => {
     try {
       await addProductToCart(product._id, product.size[1]);
@@ -36,7 +38,7 @@ const Product = ({ product }) => {
             </a>
           </div>
           <div className="card-text">{product.price} EGP</div>
-          {isLoggedIn && (
+          {(isLoggedIn||isAdmin) && (
             <button
               className="btn btn-dark btn-sm mt-1"
               style={{ width: "100%" }}

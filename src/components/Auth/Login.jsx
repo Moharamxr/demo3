@@ -10,6 +10,21 @@ const Login = () => {
   const [showError, setShowError] = useState(false);
   const isAdmin = localStorage.getItem("role") === "admin"; 
 
+  if (window.location.pathname !== "/login") {
+    localStorage.setItem("LoginErrorMessage", "");
+  }
+  
+  const handleRefresh = () => {
+    localStorage.setItem("LoginErrorMessage", "");
+    console.log("Page is being refreshed");
+  };
+  useEffect(() => {
+    window.addEventListener("beforeunload", handleRefresh);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleRefresh);
+    };
+  }, []);
   useEffect(() => {
     if (formErrors) {
       setShowError(true);

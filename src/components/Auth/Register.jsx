@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -9,7 +9,23 @@ const Register = () => {
   const navigate = useNavigate();
   const formErrors = localStorage.getItem("RegisterErrorMessage");
   const [showError, setShowError] = useState(false);
+  
+  if (window.location.pathname !== "/register") {
+    localStorage.setItem("RegisterErrorMessage", "");
+  }
 
+  const handleRefresh = () => {
+    localStorage.setItem("RegisterErrorMessage", "");
+    console.log("Page is being refreshed");
+  };
+
+  useEffect(() => {
+    window.addEventListener("beforeunload", handleRefresh);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleRefresh);
+    };
+  }, []);
   useEffect(() => {
     if (formErrors) {
       setShowError(true);
@@ -21,7 +37,7 @@ const Register = () => {
       return () => clearTimeout(timeout);
     }
   }, []);
-  
+
   const registerForm = useFormik({
     initialValues: {
       name: "",
@@ -29,7 +45,7 @@ const Register = () => {
       password: "",
     },
     validationSchema: Yup.object({
-      name: Yup.string().required("Full name is required"), 
+      name: Yup.string().required("Full name is required"),
       email: Yup.string()
         .email("Invalid email address")
         .required("Email is required"),
@@ -44,14 +60,13 @@ const Register = () => {
         localStorage.setItem("LoginErrorMessage", "");
         navigate("/login");
       } catch (error) {
-        
         if (formErrors) {
           setShowError(true);
-    
+
           const timeout = setTimeout(() => {
             setShowError(false);
           }, 3000);
-    
+
           return () => clearTimeout(timeout);
         }
       }
@@ -69,10 +84,10 @@ const Register = () => {
           <div className="container">
             <div className="row d-flex justify-content-center align-items-center">
               <div className="col-md-7">
-                <form  onSubmit={registerForm.handleSubmit}>
+                <form onSubmit={registerForm.handleSubmit}>
                   <div className="row">
-                   <span className="text-danger fw-bold text-center">
-                   {showError && <>{formErrors}</>}
+                    <span className="text-danger fw-bold text-center">
+                      {showError && <>{formErrors}</>}
                     </span>
                     <div className="col-lg-12 col-12 g-2">
                       <div className="form-floating">

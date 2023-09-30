@@ -4,12 +4,22 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { register } from "../../services/auth.service";
 import NotFound from "../pages/NotFound";
-
 const Register = () => {
   const navigate = useNavigate();
   const formErrors = localStorage.getItem("RegisterErrorMessage");
   const [showError, setShowError] = useState(false);
-  
+  useEffect(() => {
+    if (formErrors) {
+      setShowError(true);
+      const timeout = setTimeout(() => {
+        setShowError(false);
+        localStorage.setItem("RegisterErrorMessage", "");
+      }, 3000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [formErrors]);
+
   if (window.location.pathname !== "/register") {
     localStorage.setItem("RegisterErrorMessage", "");
   }
@@ -26,18 +36,6 @@ const Register = () => {
       window.removeEventListener("beforeunload", handleRefresh);
     };
   }, []);
-  useEffect(() => {
-    if (formErrors) {
-      setShowError(true);
-
-      const timeout = setTimeout(() => {
-        setShowError(false);
-      }, 3000);
-
-      return () => clearTimeout(timeout);
-    }
-  }, []);
-
   const registerForm = useFormik({
     initialValues: {
       name: "",

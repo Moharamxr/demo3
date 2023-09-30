@@ -1,4 +1,4 @@
-import React, { useEffect ,useState} from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -8,16 +8,24 @@ const Login = () => {
   const navigate = useNavigate();
   const formErrors = localStorage.getItem("LoginErrorMessage");
   const [showError, setShowError] = useState(false);
-  const isAdmin = localStorage.getItem("role") === "admin"; 
-
-  if (window.location.pathname !== "/login") {
-    localStorage.setItem("LoginErrorMessage", "");
-  }
-  
+  const isAdmin = localStorage.getItem("role") === "admin";
   const handleRefresh = () => {
     localStorage.setItem("LoginErrorMessage", "");
     console.log("Page is being refreshed");
   };
+  useEffect(() => {
+    if (formErrors) {
+      setShowError(true);
+      const timeout = setTimeout(() => {
+        setShowError(false);
+  localStorage.setItem("LoginErrorMessage", "");
+
+      }, 3000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, []);
+
   useEffect(() => {
     window.addEventListener("beforeunload", handleRefresh);
 
@@ -25,18 +33,6 @@ const Login = () => {
       window.removeEventListener("beforeunload", handleRefresh);
     };
   }, []);
-  useEffect(() => {
-    if (formErrors) {
-      setShowError(true);
-
-      const timeout = setTimeout(() => {
-        setShowError(false);
-      }, 3000);
-
-      return () => clearTimeout(timeout);
-    }
-  }, []);
-
   const loginForm = useFormik({
     initialValues: {
       email: "ahmed@test.com",
@@ -55,23 +51,23 @@ const Login = () => {
       localStorage.setItem("RegisterErrorMessage", "");
       isAdmin ? navigate("/admin"):navigate("/")
       } catch (error) {
-
-        if (formErrors) {
           setShowError(true);
-    
+
           const timeout = setTimeout(() => {
             setShowError(false);
+            localStorage.setItem("LoginErrorMessage", "");
+
           }, 3000);
-    
+
           return () => clearTimeout(timeout);
-        }
+        
+        
       }
-      
-      
+
+
     },
   });
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-  
 
   return (
     <>
@@ -80,14 +76,13 @@ const Login = () => {
           <header>
             <h2 className="text-center">Login</h2>
           </header>
-
           <div className="container">
             <div className="row d-flex justify-content-center align-items-center">
               <div className="col-md-6">
                 <form onSubmit={loginForm.handleSubmit}>
                   <div className="row">
                     <span className="text-danger fw-bold text-center">
-                    {showError && <>{formErrors}</>}
+                      {showError && <>{formErrors}</>}
                     </span>
                     <div className="col-md-12 col-sm-9 gy-2">
                       <div className="form-floating">
@@ -182,5 +177,4 @@ const Login = () => {
     </>
   );
 };
-
 export default Login;

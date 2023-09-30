@@ -9,10 +9,7 @@ const Login = () => {
   const formErrors = localStorage.getItem("LoginErrorMessage");
   const [showError, setShowError] = useState(false);
   const isAdmin = localStorage.getItem("role") === "admin"; 
-  const handleRefresh = () => {
-    localStorage.setItem("LoginErrorMessage", "");
-    console.log("Page is being refreshed");
-  };
+
   useEffect(() => {
     if (formErrors) {
       setShowError(true);
@@ -23,15 +20,8 @@ const Login = () => {
 
       return () => clearTimeout(timeout);
     }
-  }, [formErrors]);
-
-  useEffect(() => {
-    window.addEventListener("beforeunload", handleRefresh);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleRefresh);
-    };
   }, []);
+
   const loginForm = useFormik({
     initialValues: {
       email: "ahmed@test.com",
@@ -44,10 +34,24 @@ const Login = () => {
       password: Yup.string().required("Password is required"),
     }),
     onSubmit: async (formValues) => {
-      const data = await login(formValues);
+      try {
+        const data = await login(formValues);
       localStorage.setItem("LoginErrorMessage", "");
       localStorage.setItem("RegisterErrorMessage", "");
       isAdmin ? navigate("/admin"):navigate("/")
+      } catch (error) {
+
+        if (formErrors) {
+          setShowError(true);
+    
+          const timeout = setTimeout(() => {
+            setShowError(false);
+          }, 3000);
+    
+          return () => clearTimeout(timeout);
+        }
+      }
+      
       
     },
   });

@@ -20,24 +20,8 @@ const Register = () => {
 
       return () => clearTimeout(timeout);
     }
-  }, [formErrors]);
-  
-  if (window.location.pathname !== "/register") {
-    localStorage.setItem("RegisterErrorMessage","");
-  }
-
-  const handleRefresh = () => {
-    localStorage.setItem("RegisterErrorMessage", "");
-    console.log("Page is being refreshed");
-  };
-
-  useEffect(() => {
-    window.addEventListener("beforeunload", handleRefresh);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleRefresh);
-    };
   }, []);
+  
   const registerForm = useFormik({
     initialValues: {
       name: "",
@@ -60,7 +44,16 @@ const Register = () => {
         localStorage.setItem("LoginErrorMessage", "");
         navigate("/login");
       } catch (error) {
-        console.error(error);
+        
+        if (formErrors) {
+          setShowError(true);
+    
+          const timeout = setTimeout(() => {
+            setShowError(false);
+          }, 3000);
+    
+          return () => clearTimeout(timeout);
+        }
       }
     },
   });

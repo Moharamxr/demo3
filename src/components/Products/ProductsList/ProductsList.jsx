@@ -10,10 +10,12 @@ const ProductList = () => {
   const [products, setProducts] = useState([]);
   const { data } = useContext(gState);
   const { collection } = data;
-
+  const [isLoading, setIsLoading]= useState(false);
   const getData = async () => {
+    setIsLoading(true);
+
     try {
-      
+      setIsLoading(true);
 
       let data;
       if (collection === "all") {
@@ -26,15 +28,18 @@ const ProductList = () => {
         setProducts(data.products);
       }
     } catch (error) {
+      setIsLoading(false);
+
       console.error("Error occurred while retrieving products:", error);
     } 
+    setIsLoading(false);
   };
 
   useEffect(() => {
     getData();
   }, [collection]);
 
-  const isLoading = sessionStorage.getItem("loading") === "true";
+  // const isLoading = sessionStorage.getItem("loading") === "true";
   return (
     <div className="container">
       <div className="row">

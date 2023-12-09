@@ -278,7 +278,7 @@ const Home = () => {
               </div>
             </div>
             <div className="col-3 g-3">
-              <img src={credit} alt="delivery-icon" className="p-3" />
+              <img src={credit} alt="delivery-icon" className="p-0 pb-4" />
               <div>
                 <h6 className="text-light">SECURE CHECKOUT</h6>
                 <p className="text-light">SSL Payment or Cash on Delivery</p>
